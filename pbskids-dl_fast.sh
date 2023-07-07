@@ -28,7 +28,7 @@ realvid=() # Link to the raw video
 title=() # Name of the show
 
 # Fetch the titles and captions,
-# and URLs that youtube-dl can use.
+# and URLs that ffmpeg can use.
 # Store them in lists in memory!
 vid_name=`curl -s $rawurl | grep DEEPLINK | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
 echo $vid_name
