@@ -24,7 +24,7 @@ realvid=() # Link to the raw video
 title=() # Name of the show
 
 # Fetch the titles and captions,
-# and URLs that youtube-dl can use.
+# and URLs that ffmpeg can use.
 # Store them in lists in memory!
 echo "Getting WebPage"
 curl -s $rawurl
