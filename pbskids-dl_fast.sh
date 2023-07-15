@@ -21,6 +21,13 @@ if (( $# != 1 )); then
 fi
 
 rawurl=($1)
+if [ "$1" == "--help" ]; then
+    echo "PBS Kids DL 1.1"
+    echo "A tool for downloading PBS Kids videos"
+    echo
+    echo "Put in a PBS Kids Video URL and it will download!"
+    exit
+fi
 echo "Extracting URL:" $rawurl
 
 vid_name=() # Name of the video
@@ -28,7 +35,7 @@ realvid=() # Link to the raw video
 title=() # Name of the show
 
 # Fetch the titles and captions,
-# and URLs that youtube-dl can use.
+# and URLs that ffmpeg can use.
 # Store them in lists in memory!
 vid_name=`curl -s $rawurl | grep DEEPLINK | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
 echo $vid_name
@@ -36,7 +43,7 @@ realvid=`curl -s $rawurl | grep DEEPLINK | awk -F "," '{print $10}' | awk -F "\"
 echo $realvid
 title=`curl -s $rawurl | grep DEEPLINK | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
 echo $title
-vid_title=`echo $title":"$vid_name | sed "s+\ +_+g"`
+vid_title=`echo $title":"$vid_name | sed "s+\ +_+g" | sed "s+\.+_+g"`
 echo $vid_title
 echo "Downloading Video..."
-ffmpeg -i "$realvid" $vid_title.ts
+ffmpeg -i "$realvid" ./$vid_title.ts
