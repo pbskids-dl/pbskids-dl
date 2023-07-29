@@ -50,8 +50,8 @@ realvid=`curl -s $rawurl | grep DEEPLINK | awk -F "," '{print $8}' | awk -F "\""
 echo $realvid
 title=`curl -s $rawurl | grep DEEPLINK | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
 echo $title
-vid_title=`echo $title"_:_"$vid_name | sed "s+\ +_+g" | sed "s+\.+_+g"`
+vid_title=`echo $title"_:_"$vid_name | sed "s+\.+_+g"`
 echo $vid_title
 echo "Downloading Video..."
-ffmpeg -i "$realvid" ./$vid_title.mp4
+ffmpeg -i "$realvid" "$vid_title.mp4"
 echo "The operation completed."
