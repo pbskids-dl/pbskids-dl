@@ -4,16 +4,19 @@
 #
 # This version uses .ts for video downloading
 # and since that is the native format of
-# PBS Kids Videos, it goes faster.
+# PBS Kids Videos, it goes faster. (incorrect)
 #
 # Requirements for this script: curl, awk, sed, and ffmpeg
 #
 # Usage:
-# ./pbskids-dl.sh [url]
+# ./pbskids-dl_fast.sh [url]
 # where url is the page you land on when 
 # a video is playing. 
 #
 # Made by NexusSfan
+
+echo "PBS Kids DL Fast is now End Of Life (EOF) due to being obsolete."
+echo "Version not recommended."
 
 if (( $# != 1 )); then
     echo "Illegal number of parameters."
@@ -22,7 +25,7 @@ fi
 
 rawurl=($1)
 if [ "$1" == "--help" ]; then
-    echo "PBS Kids DL 1.1"
+    echo "PBS Kids DL 1.1 Fast (EOF)"
     echo "A tool for downloading PBS Kids videos"
     echo
     echo "Put in a PBS Kids Video URL and it will download!"
