@@ -2,7 +2,7 @@
 #
 # Bash Script for downloading PBS Kids videos.
 #
-# Requirements for this script: curl, awk, sed, and ffmpeg
+# Requirements for this script: curl, awk, and sed
 #
 # Usage:
 # ./pbskids-dl.sh [url]
@@ -53,5 +53,5 @@ echo $title
 vid_title=`echo $title": "$vid_name | sed "s+\"+_+g"`
 echo $vid_title
 echo "Downloading Video..."
-ffmpeg -i "$realvid" "$vid_title.mp4"
+curl -s "$vid_title.mp4"
 echo "The operation completed."
