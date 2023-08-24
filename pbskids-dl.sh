@@ -38,6 +38,5 @@ title=`echo $deeplink | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | se
 vid_title=`echo $title": "$vid_name".mp4" | sed "s+\"+_+g"`
 echo $vid_title
 echo "Downloading Video..."
-echo "Using CURL as downloading tool"
 curl "$realvid" > "$vid_title"
 echo "The operation completed."
