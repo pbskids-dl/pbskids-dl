@@ -12,7 +12,7 @@
 # Made by NexusSfan
 
 if (( $# != 1 )); then
-    echo "Number of arguments is not one, exiting..."
+    echo "Number of arguments is not 1, exiting..."
     exit
 fi
 
