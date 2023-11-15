@@ -12,7 +12,7 @@
 # Made by NexusSfan
 
 if (( $# != 1 )); then
-    echo "Number of arguments is not 1, exiting..."
+    echo "Improper command! Type --help for more info."
     exit
 fi
 
@@ -31,6 +31,10 @@ echo "Extracting URL:" $rawurl
 # Store them in lists in memory!
 echo "Getting Webpage..."
 deeplink=`curl -s $rawurl | grep DEEPLINK`
+if [ -n "$var" ]; then
+    echo "Improper URL! Type --help for more info."
+    exit
+fi
 echo "Setting up variables..."
 vid_name=`echo $deeplink | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
 realvid=`echo $deeplink | awk -F "," '{print $8}' | awk -F "\"" '{print $4}' | sed "s/[\]//g"`
