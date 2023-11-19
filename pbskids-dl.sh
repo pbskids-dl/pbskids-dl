@@ -31,7 +31,7 @@ echo "Extracting URL:" $rawurl
 # Store them in lists in memory!
 echo "Getting Webpage..."
 deeplink=`curl -s $rawurl | grep DEEPLINK`
-if [ -n "$var" ]; then
+if [ -n "$deeplink" ]; then
     echo "Improper URL! Type --help for more info."
     exit
 fi
