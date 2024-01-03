@@ -1,6 +1,6 @@
 #!/usr/bin/bash
 #
-# Bash Script for downloading PBS Kids videos.
+# Bash Script for downloading PBS KIDS videos.
 #
 # Requirements for this script: curl, awk, and sed
 #
