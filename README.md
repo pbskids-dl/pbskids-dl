@@ -1,6 +1,8 @@
 # pbskids-dl
-###### ![PBSKids DL](https://github.com/NexusSfan/pbskids-dl/blob/master/logo.svg)
+###### ![PBSKIDS DL](https://github.com/NexusSfan/pbskids-dl/blob/master/logo.svg)
 
-A downloader for PBS Kids videos.
+A downloader for PBS KIDS® videos.
 
-PBSKids DL is not affiliated or associated with PBS Kids or PBS.
+PBSKIDS DL is not affiliated or associated with PBS KIDS or PBS.
+
+###### PBS KIDS and the PBS KIDS Logo are trademarks owned by Public Broadcasting Service.

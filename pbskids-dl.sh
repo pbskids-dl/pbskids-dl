@@ -1,12 +1,12 @@
 #!/usr/bin/bash
 #
-# Bash Script for downloading PBS Kids videos.
+# Bash Script for downloading PBS KIDS videos.
 #
 # Requirements for this script: curl, awk, and sed
 #
 # Usage:
 # pbskids-dl [url]
-# where url is the page you land on when 
+# Where url is the page you land on when 
 # a video is playing. 
 #
 # Made by NexusSfan
@@ -18,17 +18,14 @@ fi
 
 rawurl=($1)
 if [ "$1" == "--help" ]; then
-    echo "PBSKids DL v2.1"
-    echo "A tool for downloading PBS Kids videos"
+    echo "PBSKIDS DL v2.2 (geometry dash moment)"
+    echo "A tool for downloading PBS KIDS videos"
     echo "Usage: pbskids-dl [url]"
     exit
 fi
 
 echo "Extracting URL:" $rawurl
 
-# Fetch the titles and links,
-# and URLs that ffmpeg can use.
-# Store them in lists in memory!
 echo "Getting Webpage..."
 deeplink=`curl -s $rawurl | grep DEEPLINK`
 if [ -n "$deeplink" ]; then
@@ -36,6 +33,9 @@ if [ -n "$deeplink" ]; then
     exit
 fi
 echo "Setting up variables..."
+# Fetch the title links, and URLs
+# that curl can use. Stored in
+# variables.
 vid_name=`echo $deeplink | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
 realvid=`echo $deeplink | awk -F "," '{print $8}' | awk -F "\"" '{print $4}' | sed "s/[\]//g"`
 title=`echo $deeplink | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
