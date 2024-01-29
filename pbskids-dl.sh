@@ -18,7 +18,7 @@ fi
 
 rawurl=($1)
 if [ "$1" == "--help" ]; then
-    echo "PBSKIDS DL v2.2 (geometry dash moment)"
+    echo "PBSKIDS DL v2.3"
     echo "A tool for downloading PBS KIDS videos"
     echo "Usage: pbskids-dl [url]"
     exit
@@ -29,18 +29,19 @@ echo "Extracting URL:" $rawurl
 echo "Getting Webpage..."
 deeplink=`curl -s $rawurl | grep DEEPLINK`
 if [ -n "$deeplink" ]; then
-    echo "Improper URL! Type --help for more info."
+    echo "Setting up variables..."
+    # Fetch the title links, and URLs
+    # that curl can use. Stored in
+    # variables.
+    vid_name=`echo $deeplink | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
+    realvid=`echo $deeplink | awk -F "," '{print $8}' | awk -F "\"" '{print $4}' | sed "s/[\]//g"`
+    title=`echo $deeplink | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
+    vid_title=`echo $title": "$vid_name".mp4" | sed "s+\"+_+g"`
+    echo $vid_title
+    echo "Downloading Video..."
+    curl "$realvid" > "$vid_title"
+    echo "The operation completed."
     exit
+else
+    echo "Improper URL! Type --help for more info."
 fi
-echo "Setting up variables..."
-# Fetch the title links, and URLs
-# that curl can use. Stored in
-# variables.
-vid_name=`echo $deeplink | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
-realvid=`echo $deeplink | awk -F "," '{print $8}' | awk -F "\"" '{print $4}' | sed "s/[\]//g"`
-title=`echo $deeplink | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
-vid_title=`echo $title": "$vid_name".mp4" | sed "s+\"+_+g"`
-echo $vid_title
-echo "Downloading Video..."
-curl "$realvid" > "$vid_title"
-echo "The operation completed."
