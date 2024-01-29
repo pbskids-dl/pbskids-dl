@@ -44,4 +44,5 @@ if [ -n "$deeplink" ]; then
     exit
 else
     echo "Improper URL! Type --help for more info."
+    exit
 fi
