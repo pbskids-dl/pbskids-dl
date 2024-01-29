@@ -1,5 +1,3 @@
-# OUTDATED BRANCH! (2.3) DO NOT USE. USE DEFAULT BRANCH INSTEAD
-
 # pbskids-dl
 ###### ![PBSKIDS DL](https://github.com/NexusSfan/pbskids-dl/blob/master/logo.svg)
 
