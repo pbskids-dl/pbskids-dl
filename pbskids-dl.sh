@@ -1,4 +1,4 @@
-#!/usr/bin/bash
+#!/usr/bin/env bash
 #
 # Bash Script for downloading PBS KIDS videos.
 #
