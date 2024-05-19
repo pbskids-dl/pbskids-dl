@@ -36,7 +36,7 @@ if [ -n "$deeplink" ]; then
     vid_title=`echo $title": "$vid_name".mp4" | sed "s+\"+_+g"`
     echo $vid_title
     echo "Downloading Video..."
-    curl "$realvid" > "$vid_title"
+    aria2c -o $vid_title $realvid
     echo "The operation completed."
     exit
 else
