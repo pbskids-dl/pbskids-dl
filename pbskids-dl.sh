@@ -2,7 +2,7 @@
 #
 # Bash Script for downloading PBS KIDS videos.
 #
-# Requirements for this script: curl, awk, and sed
+# Requirements for this script: curl, awk, aria2, and sed
 #
 # Usage:
 # pbskids-dl [url]
@@ -18,7 +18,7 @@ fi
 
 rawurl=($1)
 if [ "$1" == "--help" ]; then
-    echo "PBSKIDS DL v2.3"
+    echo "PBSKIDS DL v3.0"
     echo "A tool for downloading PBS KIDS videos"
     echo "Usage: pbskids-dl [url]"
     exit
@@ -27,7 +27,7 @@ fi
 echo "Extracting URL:" $rawurl
 
 echo "Getting Webpage..."
-deeplink=`curl -s $rawurl | grep DEEPLINK`
+deeplink=`curl -s $rawurl | grep __NEXT_DATA__`
 if [ -n "$deeplink" ]; then
     echo "Setting up variables..."
     # Fetch the title links, and URLs
