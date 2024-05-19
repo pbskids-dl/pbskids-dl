@@ -30,9 +30,6 @@ echo "Getting Webpage..."
 deeplink=`curl -s $rawurl | grep __NEXT_DATA__`
 if [ -n "$deeplink" ]; then
     echo "Setting up variables..."
-    # Fetch the title links, and URLs
-    # that curl can use. Stored in
-    # variables.
     vid_name=`echo $deeplink | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
     realvid=`echo $deeplink | awk -F "," '{print $8}' | awk -F "\"" '{print $4}' | sed "s/[\]//g"`
     title=`echo $deeplink | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
