@@ -30,10 +30,9 @@ echo "Getting Webpage..."
 deeplink=`curl -s $rawurl | grep __NEXT_DATA__`
 if [ -n "$deeplink" ]; then
     echo "Setting up variables..."
-    vid_name=`echo $deeplink | awk -F "," '{print $9}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+\ -\ +g" |  sed "s/[\]//g"`
-    realvid=`echo $deeplink | awk -F "," '{print $8}' | awk -F "\"" '{print $4}' | sed "s/[\]//g"`
-    title=`echo $deeplink | awk -F "," '{print $24}' | awk -F "\"" '{print $4}' | sed "s/[\]//g" | sed "s+/+-+g" |  sed "s/[\]//g"`
-    vid_title=`echo $title": "$vid_name".mp4" | sed "s+\"+_+g"`
+    vid_name=`echo $deeplink | awk -F ">" '{print $4}' | awk -F "<" '{print $1}' | awk -F " Video" '{print $1}'`
+    realvid=`echo $deeplink | awk -F "mp4-16x9-baseline" '{print $2}' | awk -F "\"" '{print $5}'`
+    vid_title=`echo ""$vid_name".mp4" | sed "s+\"+_+g" | sed "s_/_+_g"`
     echo $vid_title
     echo "Downloading Video..."
     aria2c "$realvid" -o "$vid_title"
