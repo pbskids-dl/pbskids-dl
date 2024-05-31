@@ -9,7 +9,7 @@ try:
     from bs4 import BeautifulSoup
     import json
 except:
-    print('This program needs these packages\n\targparse, urllib, BeautifulSoup, and json.', file=sys.stderr)
+    print('pbskids-dl needs these modules:\n\targparse, urllib, BeautifulSoup4 (bs4), and json.', file=sys.stderr)
     sys.exit(128)
 
 def handle_progress(chunk_number, chunk_size, total_size):
@@ -37,7 +37,7 @@ try:
     soup = BeautifulSoup(webContent, features="lxml")
     script = soup.find('script', type='application/json').text
 except:
-    print('The \"' + args.url + '\" link failed to load properly.', file=sys.stderr)
+    print('ERROR: The \"' + args.url + '\" link failed to load properly. Is it a PBS Kids Video link?', file=sys.stderr)
     sys.exit(128)
 
 try:
@@ -45,7 +45,7 @@ try:
     assets = data['props']['pageProps']['videoData']['mediaManagerAsset']
     videos = assets['videos']
 except:
-    print('The video was not found!', file=sys.stderr)
+    print('ERROR: The video was not found! Is the link a PBS Kids Video link?', file=sys.stderr)
     sys.exit(128)
 
 vid_title = assets['title'].replace('/','+').replace('\\','+') + '.mp4'
@@ -58,7 +58,7 @@ for video in videos:
             print(realvid)
             urllib.request.urlretrieve(realvid, vid_title, handle_progress)
         except:
-            print('The video cannot be downloaded!', file=sys.stderr)
+            print('ERROR: The video cannot be downloaded! Might be a network issue.', file=sys.stderr)
             sys.exit(128)
         break
 print("\nThe operation completed.")
