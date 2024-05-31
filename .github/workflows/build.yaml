@@ -59,10 +59,9 @@ jobs:
           cd ./DEBIAN
           cp $GITHUB_WORKSPACE/CONTROL ./control
           cd $GITHUB_WORKSPACE
-          ls -al
           dpkg --build ./pbskids-dl_deb
       - name: Output the result
         uses: actions/upload-artifact@v2
         with:
           name: pbskids-dl.deb
-          path: /pbskids-dl.deb
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
