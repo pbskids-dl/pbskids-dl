@@ -52,7 +52,7 @@ jobs:
           cp -r $GITHUB_WORKSPACE/dist/pbskids-dl/* .
           echo "3"
           chmod +x ./pbskids-dl
-          cd $GITHUB_WORKSPACE/pbskids_dl
+          cd ../..
           mkdir -p usr/bin
           cd ./usr/bin
           echo "4"
