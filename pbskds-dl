@@ -1,0 +1,56 @@
+#! /usr/bin/env python3
+
+import argparse
+import urllib.request, urllib.error, urllib
+from bs4 import BeautifulSoup
+import json
+
+# Print iterations progress
+def handle_progress(chunk_number, chunk_size, total_size):
+    total_chunk = total_size / chunk_size
+    length = 50
+    decimals = 1
+    prefix = 'Progress:'
+    suffix = 'Complete'
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (chunk_number / float(total_chunk)))
+    filledLength = int(length * chunk_number // total_chunk)
+    bar = '█' * filledLength + '-' * (length - filledLength)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = "\r")
+    # Print New Line on Complete
+    if chunk_number == total_chunk: 
+        print()
+
+
+# Generate command prompt arguments and options
+parser = argparse.ArgumentParser(prog='pbskds-dl', description='A tool for downloading PBS KIDS videos.', epilog='Made by NexusSfan')
+parser.add_argument('url', help='The page you land on when a video is playing.')
+parser.add_argument('-v','--version', action='version', version='PBSKIDS DL 3.0')
+# parse the argument
+args = parser.parse_args()
+
+# Fetch the web page
+response = urllib.request.urlopen(args.url)
+webContent = response.read().decode('UTF-8')
+# parse the HTML
+soup = BeautifulSoup(webContent, features="lxml")
+# find the json script
+script = soup.find('script', type='application/json').text
+# parse the json script
+data = json.loads(script)
+# extract assets from json
+assets = data['props']['pageProps']['videoData']['mediaManagerAsset']
+# generate title
+vid_title = assets['title'].replace('/','_').replace('\\','_') + '.mp4'
+print(vid_title)
+# extract the video assets
+videos = assets['videos']
+# find the video that matches the profile
+for video in videos:
+    if (video['profile'] == 'mp4-16x9-baseline'):
+        realvid = video['url']
+        print('Downloading Video...')
+        print(realvid)
+        urllib.request.urlretrieve(realvid, vid_title,handle_progress)
+        # once video is downloaded, exit the loop early
+        break
+print("\nThe operation completed.")
