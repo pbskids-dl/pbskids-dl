@@ -43,20 +43,25 @@ jobs:
           pwd
           chmod +x *
           pyinstaller pbskids-dl.py
-          mkdir pbskids-dl
-          cd ./pbskids-dl
+          echo "1"
+          mkdir pbskids-dl_deb
+          echo "2"
+          cd ./pbskids-dl_deb
           mkdir -p opt/pbskids-dl
           cd ./opt/pbskids-dl
           cp -r $GITHUB_WORKSPACE/dist/pbskids-dl/* .
+          echo "3"
           chmod +x ./pbskids-dl
           cd $GITHUB_WORKSPACE/pbskids_dl
           mkdir -p usr/bin
           cd ./usr/bin
+          echo "4"
           ln -s /opt/pbskids-dl/pbskids-dl pbskids-dl
           cp $GITHUB_WORKSPACE/pbskids-dl.sh .
           ls -al $GITHUB_WORKSPACE
           cd ../../
           mkdir DEBIAN
+          echo "5"
           cd ./DEBIAN
           cp $GITHUB_WORKSPACE/CONTROL .
           cd $GITHUB_WORKSPACE
