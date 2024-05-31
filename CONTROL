@@ -1,7 +1,7 @@
 Package: pbskids-dl
 Version: 3.0
 Maintainer: NexusSfan <nexussfan@duck.com>
-Depends: python3 curl aria2 bash awk
+Depends: python3, curl, aria2, bash, awk
 Architecture: amd64
 Homepage: https://github.com/NexusSfan/pbskids-dl
 Description: A downloader for PBS Kids videos
