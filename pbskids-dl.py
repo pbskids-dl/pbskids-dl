@@ -60,3 +60,4 @@ for video in videos:
             sys.exit(128)
         break
 print("\nThe operation completed.")
+sys.exit(0)
