@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-#thank you PR 15
-
 try:
     import sys
     import argparse
