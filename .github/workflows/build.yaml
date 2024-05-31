@@ -34,28 +34,28 @@ jobs:
         shell: bash
         run: |
          cd $GITHUB_WORKSPACE
-         apt install python3-pip
+         sudo apt install python3-pip
          pip install pyinstaller
       - name: Create binary
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          pyinstaller pbskids-dl.py
-          mkdir pbskids-dl
+          sudo pyinstaller pbskids-dl.py
+          sudo mkdir pbskids-dl
           cd ./pbskids-dl
-          mkdir -p opt/pbskids-dl
+          sudo mkdir -p opt/pbskids-dl
           cd ./opt/pbskids-dl
-          cp $GITHUB_WORKSPACE/pbskids-dl/dist/pbskids-dl/* .
-          chmod +x ./pbskids-dl
+          sudo cp $GITHUB_WORKSPACE/pbskids-dl/dist/pbskids-dl/* .
+          sudo chmod +x ./pbskids-dl
           cd $GITHUB_WORKSPACE/pbskids_dl
-          mkdir -p usr/bin
+          sudo mkdir -p usr/bin
           cd ./usr/bin
-          ln -s /opt/pbskids-dl/pbskids-dl pbskids-dl
-          cp $GITHUB_WORKSPACE/pbskids-dl.sh .
-          chmod +x ./pbskids-dl*
+          sudo ln -s /opt/pbskids-dl/pbskids-dl pbskids-dl
+          sudo cp $GITHUB_WORKSPACE/pbskids-dl.sh .
+          sudo chmod +x ./pbskids-dl*
           cd $GITHUB_WORKSPACE/pbskids-dl
-          mkdir DEBIAN
+          sudo mkdir DEBIAN
           cd ./DEBIAN
-          cp $GITHUB_WORKSPACE/CONTROL .
+          sudo cp $GITHUB_WORKSPACE/CONTROL .
           cd $GITHUB_WORKSPACE
-          dpkg --build ./pbskids-dl
+          sudo dpkg --build ./pbskids-dl
