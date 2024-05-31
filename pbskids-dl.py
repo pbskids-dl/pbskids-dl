@@ -43,7 +43,7 @@ def fetch_script(url):
         soup = BeautifulSoup(webContent, features="lxml")
         script = soup.find('script', type='application/json').text
     except:
-        nofoundurl = str('The \"' + args.url + '\" link failed to load properly. Is it a PBS Kids Video link?')
+        nofoundurl = str('The \"' + url + '\" link failed to load properly. Is it a PBS Kids Video link?')
         errorquit(nofoundurl, "128", "1")
     return script
 
