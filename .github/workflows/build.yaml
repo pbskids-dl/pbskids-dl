@@ -40,7 +40,7 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          sudo pyinstaller pbskids-dl.py
+          pyinstaller pbskids-dl.py
           sudo mkdir pbskids-dl
           cd ./pbskids-dl
           sudo mkdir -p opt/pbskids-dl
