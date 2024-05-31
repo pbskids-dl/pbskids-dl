@@ -47,7 +47,7 @@ jobs:
           cd ./pbskids-dl
           mkdir -p opt/pbskids-dl
           cd ./opt/pbskids-dl
-          cp $GITHUB_WORKSPACE/pbskids-dl/dist/pbskids-dl/* .
+          cp $GITHUB_WORKSPACE/dist/pbskids-dl/* .
           chmod +x ./pbskids-dl
           cd $GITHUB_WORKSPACE/pbskids_dl
           mkdir -p usr/bin
