@@ -54,6 +54,7 @@ jobs:
           cd ./usr/bin
           ln -s /opt/pbskids-dl/pbskids-dl pbskids-dl
           cp $GITHUB_WORKSPACE/pbskids-dl.sh .
+          ls -al $GITHUB_WORKSPACE
           cd ../../
           mkdir DEBIAN
           cd ./DEBIAN
