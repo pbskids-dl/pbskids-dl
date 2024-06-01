@@ -1,8 +1,8 @@
 # This is a basic workflow to help you get started with Actions
 
-name: Make Packages
+name: build
 
-run-name: Make Packages
+run-name: build
 
 
 # Controls when the workflow will run
