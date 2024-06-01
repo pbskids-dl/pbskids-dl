@@ -1,5 +1,6 @@
 # pbskids-dl
 ###### ![PBSKIDS DL](https://github.com/NexusSfan/pbskids-dl/blob/master/logo.svg)
+[![build](https://github.com/NexusSfan/pbskids-dl/actions/workflows/build.yaml/badge.svg)](https://github.com/NexusSfan/pbskids-dl/actions/workflows/build.yaml)
 
 A downloader for PBS KIDS® videos.
 
