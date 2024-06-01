@@ -37,7 +37,7 @@ jobs:
          sudo apt install python3-pip
          pip install pyinstaller
          pip install argparse
-         pip install urllib
+         pip install urllib3
          pip install beautifulsoup4
          pip install json
       - name: Create binary
