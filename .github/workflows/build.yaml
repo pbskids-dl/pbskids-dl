@@ -36,6 +36,10 @@ jobs:
          cd $GITHUB_WORKSPACE
          sudo apt install python3-pip
          pip install pyinstaller
+         pip install argparse
+         pip install urllib
+         pip install beautifulsoup4
+         pip install json
       - name: Create binary
         shell: bash
         run: |
