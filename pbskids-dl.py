@@ -14,7 +14,7 @@ try:
     from bs4 import BeautifulSoup
     import json
 except:
-    errorquit("pbskids-dl needs these modules:\n\targparse, urllib, BeautifulSoup4 (bs4)\, and json", "128", "-1")
+    errorquit("pbskids-dl needs these modules:\n\targparse, urllib (urllib3), and BeautifulSoup4 (bs4)", "128", "-1")
 
 def handle_progress(chunk_number, chunk_size, total_size):
     length = 50
