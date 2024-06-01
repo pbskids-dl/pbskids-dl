@@ -48,11 +48,11 @@ jobs:
           cd ./opt/pbskids-dl
           cp $GITHUB_WORKSPACE/pbskids-dl.py .
           pyinstaller pbskids-dl.py
-          chmod +x ./pbskids-dl
+          chmod +x ./dist/pbskids-dl/pbskids-dl
           cd ../..
           mkdir -p usr/bin
           cd ./usr/bin
-          ln -s /opt/pbskids-dl/dist/pbskids-dl pbskids-dl
+          ln -s /opt/pbskids-dl/dist/pbskids-dl/pbskids-dl pbskids-dl
           cp $GITHUB_WORKSPACE/pbskids-dl.sh .
           cd ../../
           mkdir DEBIAN
