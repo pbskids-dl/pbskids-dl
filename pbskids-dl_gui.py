@@ -1,51 +1,40 @@
 #!/usr/bin/env python3
 pbskids_dl_version = '3.0'
 
+try:
+    import tkinter, tkinter.messagebox
+    from tkinter import ttk
+    import threading
+    import urllib.request, urllib.error, urllib
+    import sys
+    import bs4
+    import json
+except:
+    errorquit("pbskids-dl needs these modules:\n\ttkinter (ttk), json, threading, urllib (urllib3), and BeautifulSoup4 (bs4)", "128", "-1")
+
 def errorquit(exitmessage, exitcode, errorcode):
     print("ERROR: " + str(exitmessage), file=sys.stderr)
     print("Error code: " + str(errorcode), file=sys.stderr)
     print("Possible causes: Bad internet or script killed", file=sys.stderr)
+    root.destroy()
     sys.exit(int(exitcode))
 
-try:
-    import sys
-    import argparse
-    import urllib.request, urllib.error, urllib
-    from bs4 import BeautifulSoup
-    import json
-except:
-    errorquit("pbskids-dl needs these modules:\n\targparse, urllib (urllib3), and BeautifulSoup4 (bs4)", "128", "-1")
-
-def handle_progress(chunk_number, chunk_size, total_size):
-    length = 50
-    
-    total_chunk = total_size / chunk_size
-    prefix = 'Downloading:'
-    percent = ("{0:." + '1' + "f}").format(100 * (chunk_number / float(total_chunk)))
-    filledLength = int(length * chunk_number // total_chunk)
-    bar = '█' * filledLength + ' ' * (length - filledLength)
-    print(f'\r{prefix} |{bar}| {percent}%', end = "\r", file=sys.stdout)
-    if chunk_number == total_chunk: 
-        print()
-
-def cli_builder():
-    parser = argparse.ArgumentParser(prog='pbskids-dl', description='A tool for downloading PBS KIDS videos.', epilog='Made by NexusSfan')
-    parser.add_argument('url', help='The page you land on when a video is playing.')
-    parser.add_argument('-v', '--version', action='version', version='PBSKIDS DL '+pbskids_dl_version)
-    args = parser.parse_args()
-    return args
-
-def fetch_script(url):
-    # try:
-    response = urllib.request.urlopen(url)
-    webContent = response.read().decode('UTF-8')
-    global soup
-    soup = BeautifulSoup(webContent, features="lxml")
-    script = soup.find('script', type='application/json').text
-    # except:
-        # nofoundurl = str('The \"' + url + '\" link failed to load properly. Is it a PBS Kids Video link?')
-        # errorquit(nofoundurl, "128", "1")
+def fetch_script(link: str):
+    try:
+        response = urllib.request.urlopen(link)
+        webContent = response.read().decode('UTF-8')
+        soup = bs4.BeautifulSoup(webContent, features="lxml")
+        check_drm(soup)
+        script = soup.find('script', type='application/json').text
+    except:
+        nofoundurl = str('The \"' + link + '\" link failed to load properly. Is it a PBS Kids Video link?')
+        errorquit(nofoundurl, "128", "1")
     return script
+
+def check_drm(soup):
+    isdrm = soup.find('\"drm_enabled\"\:true')
+    if str(isdrm) != "None":
+        errorquit("DRM Content is not available in pbskids-dl... yet", "1", "4")
 
 def find_assets(script):
     try:
@@ -53,37 +42,77 @@ def find_assets(script):
         assets = data['props']['pageProps']['videoData']['mediaManagerAsset']
         videos = assets['videos']
     except:
-        errorquit("ERROR: The video was not found! Is the link a PBS Kids Video link?", "128", "2")
+        message='ERROR: The video was not found! Is the link a PBS Kids Video link?'
+        tkinter.messagebox.showwarning(title='Warning!',message=message)
+        errorquit(message, "128", "2")
     return assets,videos
 
-def check_drm():
-    global soup
-    isdrm = soup.find('\"drm_enabled\"\:true')
-    if str(isdrm) != "None":
-        errorquit("DRM Content is not available in pbskids-dl... yet", "1", "4")
+def download_status(count, data_size, total_data):
+    if count == 0:
+        # Set the maximum value for the progress bar.
+        progressbar.configure(maximum=total_data)
+    else:
+        # Increase the progress.
+        progressbar.step(data_size)
 
-def download_video(vid_title, video):
-    try:
-        global realvid
-        realvid = video['url']
-        print('Downloading Video...')
-        print(realvid)
-        urllib.request.urlretrieve(realvid, vid_title, handle_progress)
-    except:
-        errorquit("The video cannot be downloaded! Script was probably killed.", "128", "3")
+def download_video(*args):
+    global progressbar
 
-def main():
-    args = cli_builder()
-    script = fetch_script(args.url)
-    check_drm()
+    link = url.get()
+    script = fetch_script(link)
     assets, videos = find_assets(script)
     vid_title = assets['title'].replace('/','+').replace('\\','+') + '.mp4'
-    print(vid_title)
+    file_name = ttk.Label(mainframe, text='Video file name: ' + vid_title)
+    file_name.grid(column=1, row=3, sticky=tkinter.W)
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
-            download_video(vid_title, video)
+            realvid = video['url']
+            # realvid='https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe'
+            progressbar = ttk.Progressbar(mainframe)
+            progressbar.grid(column=1,row=2, sticky=(tkinter.W, tkinter.E))
+            download_button['state']= tkinter.DISABLED
+            urllib.request.urlretrieve(realvid, vid_title, download_status)
+            urllib.request.urlcleanup()
+            progressbar.grid_remove()
             break
-    print("\nThe operation completed.")
+    download_button['state']= tkinter.NORMAL
+    tkinter.messagebox.showinfo(title='Completed!',message='The operation completed.')
+    file_name.grid_remove()
+    
+def download_button_clicked(*args):
+    downloading = threading.Thread(target=download_video)
+    downloading.daemon = True
+    downloading.start()
+    
+def main():
+    global root
+    global mainframe
+    global download_button
+    global url
+
+    root = tkinter.Tk()
+    root.title('PBSKIDS DL ' + pbskids_dl_version)
+    
+    mainframe = tkinter.ttk.Frame(root, padding='3 3 12 12')
+    mainframe.grid(column=0, row=0, sticky=(tkinter.N, tkinter.W, tkinter.E, tkinter.S))
+    root.columnconfigure(0, weight=1)
+    root.rowconfigure(0, weight=1)
+
+    ttk.Label(mainframe, text='The page you land on when a video is playing:').grid(column=1, row=1, sticky=tkinter.W)
+    url = tkinter.StringVar()
+    url_entry = ttk.Entry(mainframe, width=40, textvariable=url)
+    url_entry.grid(column=1, row=2, sticky=(tkinter.W, tkinter.E))
+
+    download_button = ttk.Button(mainframe, text='Download', command=download_button_clicked)
+    download_button.grid(column=2, row=2, sticky=tkinter.W)
+
+    for child in mainframe.winfo_children(): 
+        child.grid_configure(padx=5, pady=5)
+
+    url_entry.focus()
+    root.bind('<Return>', download_button_clicked)
+
+    root.mainloop()
 
 if __name__ == "__main__":
     main()
