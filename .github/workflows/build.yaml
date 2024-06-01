@@ -1,30 +1,14 @@
-# This is a basic workflow to help you get started with Actions
-
 name: build
-
 run-name: build
 
-
-# Controls when the workflow will run
 on:
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
   push:
 
-defaults:
-  run:
-    working-directory: ./
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a multiple jobs
   build_deb:
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
-
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Init tools
         uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -66,6 +50,12 @@ jobs:
           cp $GITHUB_WORKSPACE/CONTROL ./control
           cd $GITHUB_WORKSPACE
           dpkg --build ./pbskids-dl_deb
+      - name: Test build
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          sudo apt install ./pbskids-dl_deb.deb
+          pbskids-dl https://pbskids.org/videos/watch/trolley-visits-someplace-else-wish-upon-a-fish/1080400
       - name: Output the result
         uses: actions/upload-artifact@v4
         with:
