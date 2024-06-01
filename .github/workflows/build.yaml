@@ -42,17 +42,17 @@ jobs:
           cd $GITHUB_WORKSPACE
           pwd
           chmod +x *
-          pyinstaller pbskids-dl.py
           mkdir pbskids-dl_deb
           cd ./pbskids-dl_deb
           mkdir -p opt/pbskids-dl
           cd ./opt/pbskids-dl
-          cp -r $GITHUB_WORKSPACE/dist/pbskids-dl/* .
+          cp $GITHUB_WORKSPACE/pbskids-dl.py .
+          pyinstaller pbskids-dl.py
           chmod +x ./pbskids-dl
           cd ../..
           mkdir -p usr/bin
           cd ./usr/bin
-          ln -s /opt/pbskids-dl/pbskids-dl pbskids-dl
+          ln -s /opt/pbskids-dl/dist/pbskids-dl pbskids-dl
           cp $GITHUB_WORKSPACE/pbskids-dl.sh .
           cd ../../
           mkdir DEBIAN
