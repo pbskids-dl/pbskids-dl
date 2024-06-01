@@ -1,5 +1,4 @@
 name: Build packages
-run-name: build
 
 on:
   workflow_dispatch:
