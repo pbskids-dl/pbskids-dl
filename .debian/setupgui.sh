@@ -16,6 +16,6 @@ cp $GITHUB_WORKSPACE/pbskids-dl_gui.sh .
 cd ../../
 mkdir DEBIAN
 cd ./DEBIAN
-cp $GITHUB_WORKSPACE/.debian/control .
+cp $GITHUB_WORKSPACE/.debian/control.py ./control
 cd $GITHUB_WORKSPACE
 dpkg --build ./pbskids-dl_gui_deb
