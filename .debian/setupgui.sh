@@ -12,7 +12,6 @@ cd ../..
 mkdir -p usr/bin
 cd ./usr/bin
 ln -s /opt/pbskids-dl_gui/dist/pbskids-dl_gui/pbskids-dl_gui pbskids-dl_gui
-cp $GITHUB_WORKSPACE/pbskids-dl_gui.sh .
 cd ../../
 mkdir DEBIAN
 cd ./DEBIAN
