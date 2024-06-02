@@ -1,4 +1,4 @@
-Package: pbskids-dl-gui
+Package: pbskids-dl.gui
 Version: 3.0
 Maintainer: NexusSfan <nexussfan@duck.com>
 Depends: python3, python3-tk, python3-urllib3, python3-bs4
