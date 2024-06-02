@@ -12,6 +12,7 @@ cd ../..
 mkdir -p usr/bin
 cd ./usr/bin
 ln -s /opt/pbskids-dl.amd64/dist/pbskids-dl/pbskids-dl pbskids-dl.amd64
+ln -s ./pbskids-dl.amd64 ./pbskids-dl
 cp $GITHUB_WORKSPACE/pbskids-dl.sh .
 cp $GITHUB_WORKSPACE/pbskids-dl.py .
 cd ../../
