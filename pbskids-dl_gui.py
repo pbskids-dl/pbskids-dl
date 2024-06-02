@@ -1,21 +1,28 @@
 #!/usr/bin/env python3
 pbskids_dl_version = '3.0'
+import sys
 
 try:
     import tkinter, tkinter.messagebox
     from tkinter import ttk
     import threading
     import urllib.request, urllib.error, urllib
-    import sys
     import bs4
     import json
 except:
-    errorquit("pbskids-dl needs these modules:\n\ttkinter (ttk), json, threading, urllib (urllib3), and BeautifulSoup4 (bs4)", "128", "-1")
+    print("pbskids-dl needs these modules:\n\ttkinter, json, threading, urllib (urllib3), and BeautifulSoup4 (bs4)")
+    sys.exit(128)
 
 def errorquit(exitmessage, exitcode, errorcode):
-    print("ERROR: " + str(exitmessage), file=sys.stderr)
-    print("Error code: " + str(errorcode), file=sys.stderr)
-    print("Possible causes: Bad internet or script killed", file=sys.stderr)
+    # Show error part 1
+    pbskidsdl_errorone = "ERROR: " + str(exitmessage)
+    pbskidsdl_errortwo = "Error code: " + str(errorcode)
+    pbskidsdl_errorthree = "Possible causes: Bad internet or script killed"
+    pbksidsdl_fullerror = str(pbskidsdl_errorone + "\n" + pbskidsdl_errortwo + "\n" + pbskidsdl_errorthree)
+    print(pbskidsdl_errorone, file=sys.stderr)
+    print(pbskidsdl_errortwo, file=sys.stderr)
+    print(pbskidsdl_errorthree, file=sys.stderr)
+    tkinter.messagebox.showinfo(title='Error!',message=pbksidsdl_fullerror)
     root.destroy()
     sys.exit(int(exitcode))
 
@@ -28,7 +35,7 @@ def fetch_script(link: str):
         script = soup.find('script', type='application/json').text
     except:
         nofoundurl = str('The \"' + link + '\" link failed to load properly. Is it a PBS Kids Video link?')
-        errorquit(nofoundurl, "128", "1")
+        errorquit(nofoundurl, "1", "1")
     return script
 
 def check_drm(soup):
@@ -44,7 +51,7 @@ def find_assets(script):
     except:
         message='ERROR: The video was not found! Is the link a PBS Kids Video link?'
         tkinter.messagebox.showwarning(title='Warning!',message=message)
-        errorquit(message, "128", "2")
+        errorquit(message, "1", "2")
     return assets,videos
 
 def download_status(count, data_size, total_data):
@@ -91,14 +98,14 @@ def main():
     global url
 
     root = tkinter.Tk()
-    root.title('PBSKIDS DL ' + pbskids_dl_version)
+    root.title('pbskids-dl ' + pbskids_dl_version)
     
     mainframe = tkinter.ttk.Frame(root, padding='3 3 12 12')
     mainframe.grid(column=0, row=0, sticky=(tkinter.N, tkinter.W, tkinter.E, tkinter.S))
     root.columnconfigure(0, weight=1)
     root.rowconfigure(0, weight=1)
 
-    ttk.Label(mainframe, text='The page you land on when a video is playing:').grid(column=1, row=1, sticky=tkinter.W)
+    ttk.Label(mainframe, text='Enter a URL:').grid(column=1, row=1, sticky=tkinter.W)
     url = tkinter.StringVar()
     url_entry = ttk.Entry(mainframe, width=40, textvariable=url)
     url_entry.grid(column=1, row=2, sticky=(tkinter.W, tkinter.E))

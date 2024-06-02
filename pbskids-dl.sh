@@ -18,7 +18,7 @@ fi
 
 rawurl=($1)
 if [ "$1" == "--help" ]; then
-    echo "PBSKIDS DL v3.0"
+    echo "pbskids-dl v3.0"
     echo "A tool for downloading PBS KIDS videos"
     echo "Usage: pbskids-dl [url]"
     exit
