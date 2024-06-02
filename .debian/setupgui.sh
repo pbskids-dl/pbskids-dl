@@ -1,8 +1,8 @@
 cd $GITHUB_WORKSPACE
 pwd
 chmod +x *
-mkdir pbskids-dl_deb
-cd ./pbskids-dl_deb
+mkdir pbskids-dl
+cd ./pbskids-dl
 mkdir -p opt/pbskids-dl_gui
 cd ./opt/pbskids-dl_gui
 cp $GITHUB_WORKSPACE/pbskids-dl_gui.py .
@@ -17,4 +17,4 @@ mkdir DEBIAN
 cd ./DEBIAN
 cp $GITHUB_WORKSPACE/.debian/control.py ./control
 cd $GITHUB_WORKSPACE
-dpkg --build ./pbskids-dl_deb
+dpkg --build ./pbskids-dl
