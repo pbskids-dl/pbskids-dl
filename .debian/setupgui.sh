@@ -12,9 +12,10 @@ cd ../..
 mkdir -p usr/bin
 cd ./usr/bin
 ln -s /opt/pbskids-dl_gui/dist/pbskids-dl_gui/pbskids-dl_gui pbskids-dl_gui
+cp $GITHUB_WORKSPACE/pbskids-dl_gui.py .
 cd ../../
 mkdir DEBIAN
 cd ./DEBIAN
-cp $GITHUB_WORKSPACE/.debian/control.py ./control
+cp $GITHUB_WORKSPACE/.debian/control2 ./control
 cd $GITHUB_WORKSPACE
 dpkg --build ./pbskids-dl_deb
