@@ -1,9 +1,9 @@
-Package: pbskids-dl-c
+Package: pbskids-dl.amd64
 Version: 3.0
 Maintainer: NexusSfan <nexussfan@duck.com>
 Depends: python3, curl, aria2, bash, awk, sed
 Architecture: amd64
-Suggests: pbskids-dl_gui, pbskids-dl_gui-c
+Suggests: pbskids-dl_gui
 Provides: pbskids-dl
 Homepage: https://github.com/NexusSfan/pbskids-dl
 Description: A downloader for PBS Kids videos

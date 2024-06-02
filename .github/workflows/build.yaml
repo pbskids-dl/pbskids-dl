@@ -5,7 +5,7 @@ on:
   push:
 
 jobs:
-  build_deb_cli:
+  build_deb_cli_amd64:
     runs-on: ubuntu-latest
     steps:
       - name: Init tools
@@ -25,6 +25,91 @@ jobs:
          pip install beautifulsoup4
          pip install lxml
       - name: Create binary
+        shell: bash
+        run: |
+          chmod +x *
+          ./.debian/setupcli_amd64.sh
+      - name: Output the result
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_amd64.deb
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+      - name: Output the SHA256SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_amd64.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+      - name: Output the SHA512SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_amd64.sha512sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
+      - name: Test Build
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          sudo apt install ./pbskids-dl_deb.deb
+          cd ./.debian
+          chmod +x *
+          ./filetest.sh ./pbskidsdl_testers.txt
+  build_deb_gui_amd64:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Init tools
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install tools
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          sudo apt update
+          sudo apt install python3-pip
+          pip install pyinstaller
+          pip install argparse
+          pip install urllib3
+          pip install beautifulsoup4
+          pip install tk
+      - name: Create binary
+        shell: bash
+        run: |
+          chmod +x *
+          ./.debian/setupgui_amd64.sh
+      - name: Output the result
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui_amd64.deb
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+      - name: Output the SHA256SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui_amd64.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+      - name: Output the SHA512SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui_amd64.sha512sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
+  build_deb_cli:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Init tools
+        uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install tools
+        shell: bash
+        run: |
+         cd $GITHUB_WORKSPACE
+         sudo apt update
+         sudo apt install python3-pip -y
+         pip install argparse
+         pip install urllib3
+         pip install beautifulsoup4
+         pip install lxml
+      - name: Create Package
         shell: bash
         run: |
           chmod +x *
@@ -60,18 +145,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.11'
-      - name: Install tools
-        shell: bash
-        run: |
-          cd $GITHUB_WORKSPACE
-          sudo apt update
-          sudo apt install python3-pip
-          pip install pyinstaller
-          pip install argparse
-          pip install urllib3
-          pip install beautifulsoup4
-          pip install tk
-      - name: Create binary
+      - name: Create Package
         shell: bash
         run: |
           chmod +x *
@@ -90,78 +164,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: pbskids-dl_gui.sha512sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
-  build_deb_cli_c:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Init tools
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Install tools
-        shell: bash
-        run: |
-         cd $GITHUB_WORKSPACE
-         sudo apt update
-         sudo apt install python3-pip -y
-         pip install argparse
-         pip install urllib3
-         pip install beautifulsoup4
-         pip install lxml
-      - name: Create Package
-        shell: bash
-        run: |
-          chmod +x *
-          ./.debian/setupcli_c.sh
-      - name: Output the result
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_c.deb
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
-      - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_c.sha256sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-      - name: Output the SHA512SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_c.sha512sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
-      - name: Test Build
-        shell: bash
-        run: |
-          cd $GITHUB_WORKSPACE
-          sudo apt install ./pbskids-dl_deb.deb
-          cd ./.debian
-          chmod +x *
-          ./filetest.sh ./pbskidsdl_testers.txt
-  build_deb_gui_c:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Init tools
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.11'
-      - name: Create Package
-        shell: bash
-        run: |
-          chmod +x *
-          ./.debian/setupgui_c.sh
-      - name: Output the result
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_gui_c.deb
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
-      - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_gui_c.sha256sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-      - name: Output the SHA512SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_gui_c.sha512sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
