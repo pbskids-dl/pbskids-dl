@@ -39,11 +39,6 @@ jobs:
         with:
           name: pbskids-dl_amd64.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-      - name: Output the SHA512SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_amd64.sha512sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
       - name: Test Build
         shell: bash
         run: |
@@ -86,11 +81,6 @@ jobs:
         with:
           name: pbskids-dl_gui_amd64.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-      - name: Output the SHA512SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_gui_amd64.sha512sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
   build_deb_cli:
     runs-on: ubuntu-latest
     steps:
@@ -124,11 +114,6 @@ jobs:
         with:
           name: pbskids-dl.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-      - name: Output the SHA512SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl.sha512sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
       - name: Test Build
         shell: bash
         run: |
@@ -160,8 +145,3 @@ jobs:
         with:
           name: pbskids-dl_gui.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-      - name: Output the SHA512SUM
-        uses: actions/upload-artifact@v4
-        with:
-          name: pbskids-dl_gui.sha512sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha512sum
