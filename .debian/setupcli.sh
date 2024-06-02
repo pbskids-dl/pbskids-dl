@@ -20,3 +20,5 @@ cd ./DEBIAN
 cp $GITHUB_WORKSPACE/.debian/control .
 cd $GITHUB_WORKSPACE
 dpkg --build ./pbskids-dl_deb
+sha256sum pbskids-dl_deb.deb > pbskids-dl.sha256sum
+sha512sum pbskids-dl_deb.deb > pbskids-dl.sha512sum

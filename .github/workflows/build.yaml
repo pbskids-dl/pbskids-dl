@@ -34,6 +34,16 @@ jobs:
         with:
           name: pbskids-dl.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+      - name: Output the SHA256SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha256sum
+      - name: Output the SHA512SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl.sha512sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha512sum
       - name: Test Build
         shell: bash
         run: |
@@ -71,6 +81,16 @@ jobs:
         with:
           name: pbskids-dl_gui.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+      - name: Output the SHA256SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha256sum
+      - name: Output the SHA512SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui.sha512sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha512sum
   build_deb_cli_c:
     runs-on: ubuntu-latest
     steps:
@@ -99,6 +119,16 @@ jobs:
         with:
           name: pbskids-dl_c.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+      - name: Output the SHA256SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_c.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha256sum
+      - name: Output the SHA512SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_c.sha512sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha512sum
       - name: Test Build
         shell: bash
         run: |
@@ -125,3 +155,13 @@ jobs:
         with:
           name: pbskids-dl_gui_c.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+      - name: Output the SHA256SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui_c.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha256sum
+      - name: Output the SHA512SUM
+        uses: actions/upload-artifact@v4
+        with:
+          name: pbskids-dl_gui_c.sha512sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.sha512sum
