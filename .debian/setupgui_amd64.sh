@@ -12,6 +12,7 @@ cd ../..
 mkdir -p usr/bin
 cd ./usr/bin
 ln -s /opt/pbskids-dl_gui.amd64/dist/pbskids-dl_gui/pbskids-dl_gui pbskids-dl_gui.amd64
+ln -s ./pbskids-dl_gui.amd64 ./pbskids-dl_gui
 cp $GITHUB_WORKSPACE/pbskids-dl_gui.py .
 cd ../../
 mkdir DEBIAN
