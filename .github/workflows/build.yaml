@@ -9,8 +9,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Init tools
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+        uses: actions/checkout@v4.1.5
+      - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
       - name: Install tools
@@ -29,12 +29,12 @@ jobs:
           chmod +x *
           ./.debian/setupcli.sh
       - name: Output the result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
       - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
@@ -50,8 +50,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Init tools
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+        uses: actions/checkout@v4.1.5
+      - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
       - name: Create Package
@@ -60,12 +60,12 @@ jobs:
           chmod +x *
           ./.debian/setupgui.sh
       - name: Output the result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
       - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
@@ -73,8 +73,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Init tools
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+        uses: actions/checkout@v4.1.5
+      - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
       - name: Install tools
@@ -94,12 +94,12 @@ jobs:
           chmod +x *
           ./.debian/setupcli_amd64.sh
       - name: Output the result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_amd64.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
       - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_amd64.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
@@ -115,8 +115,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Init tools
-        uses: actions/checkout@v4
-      - uses: actions/setup-python@v5
+        uses: actions/checkout@v4.1.5
+      - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
       - name: Install tools
@@ -136,12 +136,12 @@ jobs:
           chmod +x *
           ./.debian/setupgui_amd64.sh
       - name: Output the result
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui_amd64.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
       - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui_amd64.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
