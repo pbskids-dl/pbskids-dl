@@ -31,7 +31,7 @@ def handle_progress(chunk_number, chunk_size, total_size):
 def cli_builder():
     parser = argparse.ArgumentParser(prog='pbskids-dl', description='A tool for downloading PBS KIDS videos.', epilog='Made by NexusSfan')
     parser.add_argument('url', help='The page you land on when a video is playing.')
-    parser.add_argument('-v', '--version', action='version', version='PBSKIDS DL '+pbskids_dl_version)
+    parser.add_argument('-v', '--version', action='version', version='pbskids-dl '+pbskids_dl_version)
     args = parser.parse_args()
     return args
 
