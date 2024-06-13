@@ -5,4 +5,4 @@ Depends: python3, python3-tk, python3-urllib3, python3-bs4
 Architecture: all
 Recommends: pbskids-dl
 Homepage: https://github.com/NexusSfan/pbskids-dl
-Description: A downloader for PBS Kids videos
+Description: A downloader for PBS Kids videos (GUI version)
