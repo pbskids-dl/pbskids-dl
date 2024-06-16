@@ -43,6 +43,18 @@ jobs:
           cd ./.debian
           chmod +x *
           ./filetest.sh ./pbskidsdl_testers.txt
+      - name: Nightly Release
+        uses: andelf/nightly-release@main
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          name: 'Desktop App Nightly Release $$'
+          prerelease: true
+          body: 'TODO: Add nightly release notes'
+          files: |
+            ./pbskids-dl.sha256sum
+            ./pbskids-dl_deb.deb
   build_deb_gui:
     runs-on: ubuntu-latest
     steps:
