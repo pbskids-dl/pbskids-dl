@@ -44,7 +44,7 @@ body:
     id: terms
     attributes:
       label: Code of Conduct
-      description: We are making a [Code of Conduct](https://github.com/NexusSfan/pbskids-dl/blob/dev/CONTRIBUTING.md) right now.
+      description: By submitting this issue, you agree to the [Code of Conduct](https://github.com/NexusSfan/pbskids-dl/blob/dev/CONTRIBUTING.md).
       options:
-        - label: I agree I am not trolling.
+        - label: I agree to the code of conduct in this repository
           required: true
