@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Init tools
         uses: actions/checkout@v4.1.7
+        with:
+          submodules: true # This line is only needed for building a debian package, pretty much useless otherwise.
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
