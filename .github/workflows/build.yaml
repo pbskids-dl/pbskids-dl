@@ -44,12 +44,12 @@ jobs:
           chmod +x *
           ./filetest.sh ./pbskidsdl_testers.txt
       - name: Nightly Release
-        uses: andelf/nightly-release@main
+        uses: andelf/nightly-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: nightly
-          name: 'Desktop App Nightly Release $$'
+          name: 'pbskids-dl Nightly Release $$'
           prerelease: true
           body: 'TODO: Add nightly release notes'
           files: |
@@ -75,3 +75,15 @@ jobs:
         with:
           name: pbskids-dl_gui.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+      - name: Nightly Release GUI
+        uses: andelf/nightly-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly-gui
+          name: 'pbskids-dl_gui Nightly Release $$'
+          prerelease: true
+          body: 'TODO: Add nightly release notes'
+          files: |
+            ./pbskids-dl.sha256sum
+            ./pbskids-dl_deb.deb
