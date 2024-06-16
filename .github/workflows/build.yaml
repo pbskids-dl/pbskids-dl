@@ -13,16 +13,6 @@ jobs:
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
-      - name: Install tools
-        shell: bash
-        run: |
-         cd $GITHUB_WORKSPACE
-         sudo apt update
-         sudo apt install python3-pip -y
-         pip install argparse
-         pip install urllib3
-         pip install beautifulsoup4
-         pip install lxml
       - name: Create Package
         shell: bash
         run: |
@@ -38,6 +28,13 @@ jobs:
         with:
           name: pbskids-dl.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+      - name: Install tools
+        shell: bash
+        run: |
+         cd $GITHUB_WORKSPACE
+         sudo apt-get update
+         sudo apt-get install python3-pip -y
+         pip -r install requirements.txt
       - name: Test Build
         shell: bash
         run: |
