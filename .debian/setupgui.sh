@@ -3,6 +3,7 @@ if [ -n "$GITHUB_WORKSPACE" ]; then
 else
   echo "Non-github actions detected."
   export GITHUB_WORKSPACE=($PWD)
+fi
 cd $GITHUB_WORKSPACE
 chmod +x *
 mkdir pbskids-dl_gui_deb
