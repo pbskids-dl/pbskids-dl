@@ -6,7 +6,7 @@ cd ./pbskids-dl_gui_deb
 mkdir -p usr/bin
 cd ./usr/bin
 cp $GITHUB_WORKSPACE/pbskids-dl_gui.py .
-cp $GITHUB_WORKSPACE/pbskids-dl_gui.py ./pbskids-dl_gui
+ln -s ./pbskids-dl_gui.py ./pbskids-dl_gui
 cd ../../
 mkdir DEBIAN
 cd ./DEBIAN
