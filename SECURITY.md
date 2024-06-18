@@ -12,6 +12,6 @@ Only the latest version and one version below the latest get security updates.
 
 ## Reporting a Vulnerability
 
-You can report a private vulnerability [here](https://github.com/NexusSfan/pbskids-dl/security/advisories/new). 
+You can report a private vulnerability [here](https://github.com/pbskids-dl/pbskids-dl/security/advisories/new). 
 
 It will most likely be approved as I probably made some mistakes in my code. 😅
