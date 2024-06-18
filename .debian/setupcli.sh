@@ -1,3 +1,8 @@
+if [ -n "$GITHUB_WORKSPACE" ]; then
+  echo "Github actions detected."
+else
+  echo "Non-github actions detected."
+  export GITHUB_WORKSPACE=($PWD)
 cd $GITHUB_WORKSPACE
 pwd
 chmod +x *
