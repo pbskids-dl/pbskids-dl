@@ -25,11 +25,13 @@ jobs:
         with:
           name: pbskids-dl.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+          if-no-files-found: error
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+          if-no-files-found: error
       - name: Install tools
         shell: bash
         run: |
@@ -60,8 +62,10 @@ jobs:
         with:
           name: pbskids-dl_gui.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_gui_deb.deb
+          if-no-files-found: error
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_gui.sha256sum
+          if-no-files-found: error
