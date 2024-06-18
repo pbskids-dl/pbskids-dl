@@ -1,3 +1,0 @@
-[submodule "debian"]
-	path = .debian
-	url = https://github.com/pbskids-dl/pbskids-dl_debian
