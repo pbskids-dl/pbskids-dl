@@ -32,13 +32,6 @@ jobs:
           name: pbskids-dl.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
           if-no-files-found: error
-      - name: Install tools
-        shell: bash
-        run: |
-         cd $GITHUB_WORKSPACE
-         sudo apt-get update
-         sudo apt-get install python3-pip -y
-         pip install -r requirements.txt
       - name: Test Build
         shell: bash
         run: |
