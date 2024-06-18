@@ -59,9 +59,9 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui.deb
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_deb.deb
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_gui_deb.deb
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui.sha256sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_gui.sha256sum
