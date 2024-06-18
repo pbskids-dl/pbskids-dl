@@ -37,6 +37,7 @@ jobs:
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt install ./pbskids-dl_deb.deb
+          pip install argparse
           cd ./.debian
           chmod +x *
           ./filetest.sh ./pbskidsdl_testers.txt
