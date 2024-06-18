@@ -46,6 +46,8 @@ jobs:
     steps:
       - name: Initialization
         uses: actions/checkout@v4.1.7
+        with:
+          submodules: true # This line is only needed for building a debian package, pretty much useless otherwise.
       - name: Create Package
         shell: bash
         run: |
