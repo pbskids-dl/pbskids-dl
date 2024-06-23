@@ -18,7 +18,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Wait
         shell: bash
-        run: gh pr checks --exclude=dependabot "$PR_URL" 
+        run: gh pr checks --exclude=dependabot --watch "$PR_URL" 
       - name: Check GitHub actions for PR
         shell: bash
         run: gh pr checks "$PR_URL"
