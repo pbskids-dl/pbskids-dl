@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Retrieve the list of checks
-checks=$(gh pr checks "$1" --json)
+checks=$(gh pr checks "$1" --json --watch)
 
 # Filter out the "name2" workflow
 filtered_checks=$(echo "$checks" | jq -r '.[] | select(.name != "name2")')
