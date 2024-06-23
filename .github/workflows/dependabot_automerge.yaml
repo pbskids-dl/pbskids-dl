@@ -16,6 +16,9 @@ jobs:
         uses: dependabot/fetch-metadata@v2
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
+      - name: Wait
+        shell: bash
+        run: gh pr checks --exclude=dependabot "$PR_URL" 
       - name: Check GitHub actions for PR
         shell: bash
         run: gh pr checks "$PR_URL"
