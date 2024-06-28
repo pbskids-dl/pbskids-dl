@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-pbskids_dl_version = '3.0'
+pbskids_dl_version = '3.1'
 
 def errorquit(exitmessage, exitcode, errorcode):
     print("ERROR: " + str(exitmessage), file=sys.stderr)
@@ -32,6 +32,7 @@ def cli_builder():
     parser = argparse.ArgumentParser(prog='pbskids-dl', description='A tool for downloading PBS KIDS videos.', epilog='Made by NexusSfan')
     parser.add_argument('url', help='The page you land on when a video is playing.')
     parser.add_argument('-v', '--version', action='version', version='pbskids-dl '+pbskids_dl_version)
+    parser.add_argument('-q', '--quiet', action='store_true')
     args = parser.parse_args()
     return args
 
@@ -60,15 +61,18 @@ def check_drm():
     global soup
     isdrm = soup.find('\"drm_enabled\"\:true')
     if str(isdrm) != "None":
-        errorquit("DRM Content is not available in pbskids-dl... yet", "1", "4")
+        errorquit("DRM Content is not available in pbskids-dl... yet.", "1", "4")
 
-def download_video(vid_title, video):
+def download_video(vid_title, video, isquiet):
     try:
         global realvid
         realvid = video['url']
         print('Downloading Video...')
         print(realvid)
-        urllib.request.urlretrieve(realvid, vid_title, handle_progress)
+        if isquiet:
+            urllib.request.urlretrieve(realvid, vid_title)
+        else:
+            urllib.request.urlretrieve(realvid, vid_title, handle_progress)
     except:
         errorquit("The video cannot be downloaded! Script was probably killed.", "128", "3")
 
@@ -81,7 +85,7 @@ def main():
     print(vid_title)
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
-            download_video(vid_title, video)
+            download_video(vid_title, video, args.quiet)
             break
     print("\nThe operation completed.")
 
