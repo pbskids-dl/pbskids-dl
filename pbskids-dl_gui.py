@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-pbskids_dl_version = '3.0'
+pbskids_dl_version = '3.1'
 import sys
 
 try:
