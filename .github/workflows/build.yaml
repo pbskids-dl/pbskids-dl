@@ -30,7 +30,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl.sha256sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum.gz
           if-no-files-found: error
       - name: Test Build
         shell: bash
@@ -63,5 +63,5 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_gui.sha256sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_gui.sha256sum
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_gui.sha256sum.gz
           if-no-files-found: error
