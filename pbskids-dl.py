@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import sys
 pbskids_dl_version = '3.0'
 
 def errorquit(exitmessage, exitcode, errorcode):
@@ -8,7 +9,6 @@ def errorquit(exitmessage, exitcode, errorcode):
     sys.exit(int(exitcode))
 
 try:
-    import sys
     import argparse
     import urllib.request, urllib.error, urllib
     from bs4 import BeautifulSoup
