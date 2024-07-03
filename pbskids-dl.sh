@@ -2,7 +2,7 @@
 #
 # Bash Script for downloading PBS KIDS videos.
 #
-# Requirements for this script: curl, awk, and aria2
+# Requirements for this script: curl, awk, sed and aria2
 #
 # Usage:
 # pbskids-dl [url]
