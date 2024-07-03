@@ -24,9 +24,9 @@ jobs:
         shell: bash
         run: |
           chmod +x *
-          ./.$BUILD_DIR/setup$TARGET.sh
+          ./.$TARGET/setup$TYPE.sh
         env:
-          BUILD_DIR: ${{ matrix.type }}
+          TYPE: ${{ matrix.type }}
           TARGET: ${{ matrix.target }}
       - name: Output the result (debian)
         if: matrix.target == 'debian'
