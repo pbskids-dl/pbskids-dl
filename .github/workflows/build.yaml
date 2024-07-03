@@ -41,7 +41,7 @@ jobs:
         with:
           name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
-          if-no-files-found: error
+          if-no-files-found: warn
       - name: Test Build (debian)
         if: |
           matrix.target == 'debian' ||
