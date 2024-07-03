@@ -10,6 +10,7 @@ jobs:
       matrix:
         type: [cli, gui]
         target: [debian]
+      fail-fast: false
     name: Build ${{ matrix.type }} for ${{ matrix.target }}
     runs-on: ubuntu-latest
     steps:
