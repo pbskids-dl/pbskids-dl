@@ -32,13 +32,13 @@ jobs:
         if: matrix.target == 'debian'
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: pbskids-dl_deb_${{ matrix.target }}.deb
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_${{ matrix.target }}_deb.deb
+          name: pbskids-dl_deb_${{ matrix.type }}.deb
+          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_${{ matrix.type }}_deb.deb
           if-no-files-found: error
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: pbskids-dl.sha256sum
+          name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
           if-no-files-found: error
       - name: Test Build (debian)
