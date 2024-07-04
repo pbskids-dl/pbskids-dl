@@ -60,18 +60,12 @@ jobs:
         # add sha256sum later
       - name: Test Build (debian)
         shell: bash
+        if: ${{ matrix.target == 'debian' }}
         run: |
-          if [ "$TARGET" = "debian" ]; then
-            cd $GITHUB_WORKSPACE
-            sudo apt-get update
-            sudo apt-get install ./pbskids-dl_debian_cli.deb/pbskids-dl_debian_cli.deb -y
-            python3 -m pip install -r requirements.txt
-            cd ./.debian
-            sudo chmod +x ./filetest_debian.sh
-            ./filetest_debian.sh ./pbskidsdl_testers.txt
-          else
-            exit 0
-          fi
-        env:
-          TYPE: ${{ matrix.type }}
-          TARGET: ${{ matrix.target }}
+          cd $GITHUB_WORKSPACE
+          sudo apt-get update
+          sudo apt-get install ./pbskids-dl_debian_cli.deb/pbskids-dl_debian_cli.deb -y
+          python3 -m pip install -r requirements.txt
+          cd ./.debian
+          sudo chmod +x ./filetest_debian.sh
+          ./filetest_debian.sh ./pbskidsdl_testers.txt
