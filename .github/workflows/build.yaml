@@ -17,7 +17,7 @@ jobs:
       - name: Init tools
         uses: actions/checkout@v4.1.7
         with:
-          submodules: true # This line is only needed for building a package, pretty much useless otherwise.
+          submodules: true # This line is only needed for building/testing a package, pretty much useless otherwise.
       - uses: actions/setup-python@v5.1.0
         with:
           python-version: '3.11'
@@ -53,6 +53,8 @@ jobs:
     steps:
       - name: Init tools
         uses: actions/checkout@v4.1.7
+        with:
+          submodules: true # This line is only needed for building/testing a package, pretty much useless otherwise.
       - name: Download the result
         uses: actions/download-artifact@v4.1.7
         # add sha256sum later
@@ -64,9 +66,7 @@ jobs:
             sudo apt-get update
             sudo apt-get install ./pbskids-dl_debian_cli.deb/pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
-            ls -al
             cd ./.debian
-            ls -al
             sudo chmod +x ./filetest_debian.sh
             ./filetest_debian.sh ./pbskidsdl_testers.txt
           else
