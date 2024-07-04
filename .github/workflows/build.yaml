@@ -45,7 +45,7 @@ jobs:
       - name: Test Build (debian)
         if: |
           matrix.type == 'cli' ||
-          (matrix.target == 'debian')
+          && (matrix.target == 'debian')
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
