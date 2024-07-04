@@ -61,7 +61,7 @@ jobs:
         run: |
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
-            ls -al ./pbskids-dl_debian_cli.deb
+            ls -al ./pbskids-dl_debian_cli*
             sudo apt-get update
             sudo apt-get install ./pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
