@@ -46,7 +46,7 @@ jobs:
     strategy:
       matrix:
         target: [debian]
-        version: [debian:11, debian:12, ubuntu:22.04]
+        version: ["debian:11", "debian:12", "ubuntu:22.04"]
       fail-fast: false
     needs: build
     name: Test ${{ matrix.type }} for ${{ matrix.target }} using ${{ matrix.version }}
