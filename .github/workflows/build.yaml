@@ -66,6 +66,7 @@ jobs:
             python3 -m pip install -r requirements.txt
             ls -al
             cd ./.debian
+            ls -al
             sudo chmod +x ./filetest_debian.sh
             ./filetest_debian.sh ./pbskidsdl_testers.txt
           else
