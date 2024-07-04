@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     container: debian:bookworm
     steps:
-      - name: Create Package
+      - name: Update system
         shell: bash
         run: |
           apt-get update
