@@ -61,9 +61,9 @@ jobs:
         run: |
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
-            mv ./pbskids-dl_debian_cli.deb ./pbskids-dl_debian_cli.deb.zip
+            cp ./pbskids-dl_debian_cli.deb ./pbskids-dl_debian_cli.deb.zip
             ls -al
-            unzip ./pbskids-dl_debian_cli.deb
+            unzip -l ./pbskids-dl_debian_cli.deb
             ls -al
             sudo apt-get update
             sudo apt-get install ./pbskids-dl_debian_cli.deb -y
