@@ -18,6 +18,7 @@ jobs:
       - name: Create Package
         shell: bash
         run: |
+          apt update
           apt install git sudo
       - name: Init tools
         uses: actions/checkout@v4.1.7
