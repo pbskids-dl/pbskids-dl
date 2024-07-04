@@ -60,11 +60,7 @@ jobs:
           apt-get install git sudo -y
       - name: Init tools
         uses: actions/checkout@v4.1.7
-      - uses: actions/setup-python@v5.1.0
-        with:
-          python-version: '3.11'
-      - name: Download the result (debian)
-        if: matrix.target == 'debian'
+      - name: Download the result
         uses: actions/download-artifact@v4.1.7
         # add sha256sum later
       - name: Test Build (debian)
@@ -73,7 +69,6 @@ jobs:
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
             ls -al
-            sudo rm -vf /var/lib/apt/lists/*
             sudo apt-get update
             sudo apt-get install ./pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
