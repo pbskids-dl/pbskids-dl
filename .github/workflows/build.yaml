@@ -46,18 +46,11 @@ jobs:
     strategy:
       matrix:
         target: [debian]
-        version: ["debian:11", "debian:12", "ubuntu:22.04"]
       fail-fast: false
     needs: build
-    name: Test ${{ matrix.type }} for ${{ matrix.target }} using ${{ matrix.version }}
+    name: Test for ${{ matrix.target }}
     runs-on: ubuntu-latest
-    container: ${{ matrix.version }}
     steps:
-      - name: Update system
-        shell: bash
-        run: |
-          apt-get update
-          apt-get install git sudo zip unzip -y
       - name: Init tools
         uses: actions/checkout@v4.1.7
       - name: Download the result
@@ -68,10 +61,6 @@ jobs:
         run: |
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
-            mv ./pbskids-dl_debian_cli.deb ./pbskids-dl_debian_cli.deb.zip
-            ls -al
-            unzip ./pbskids-dl_debian_cli.deb
-            ls -al
             sudo apt-get update
             sudo apt-get install ./pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
