@@ -13,6 +13,7 @@ jobs:
       fail-fast: false
     name: Build ${{ matrix.type }} for ${{ matrix.target }}
     runs-on: ubuntu-latest
+    container: debian:bookworm
     steps:
       - name: Init tools
         uses: actions/checkout@v4.1.7
