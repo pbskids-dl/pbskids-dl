@@ -43,14 +43,22 @@ jobs:
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
           if-no-files-found: warn
       - name: Test Build (debian)
-        if: |
-          matrix.type == 'cli' ||
-          && (matrix.target == 'debian')
         shell: bash
         run: |
-          cd $GITHUB_WORKSPACE
-          sudo apt install ./pbskids-dl_cli_deb.deb
-          pip install -r requirements.txt
-          cd ./.debian
-          chmod +x *
-          ./filetest.sh ./pbskidsdl_testers.txt
+          if [ "$TYPE" = "cli" ]; then
+            if [ "$TARGET" = "debian" ]; then
+              cd $GITHUB_WORKSPACE
+              sudo apt install ./pbskids-dl_cli_deb.deb
+              pip install -r requirements.txt
+              cd ./.debian
+              chmod +x *
+              ./filetest.sh ./pbskidsdl_testers.txt
+            else
+              exit 0
+            fi
+          else
+            exit 0
+          fi
+        env:
+          TYPE: ${{ matrix.type }}
+          TARGET: ${{ matrix.target }}
