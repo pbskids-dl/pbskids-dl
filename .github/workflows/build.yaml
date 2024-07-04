@@ -34,13 +34,13 @@ jobs:
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.deb
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_${{ matrix.type }}_deb.deb
+          path: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.deb
           if-no-files-found: error
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.3
         with:
           name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.sha256sum
-          path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
+          path: pbskids-dl.sha256sum
           if-no-files-found: warn
   test:
     strategy:
@@ -61,9 +61,8 @@ jobs:
         run: |
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
-            ls -al ./pbskids-dl_debian_cli*
             sudo apt-get update
-            sudo apt-get install ./pbskids-dl_debian_cli.deb -y
+            sudo apt-get install ./pbskids-dl_debian_cli.deb/pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
             cd ./.debian
             chmod +x *
