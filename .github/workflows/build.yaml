@@ -43,9 +43,7 @@ jobs:
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
           if-no-files-found: warn
       - name: Test Build (debian)
-        if: |
-          matrix.target == 'debian' ||
-          matrix.type == 'cli'
+        if: ${{ matrix.target == 'debian' }} && ${{ matrix.type == 'cli' }}
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
