@@ -33,7 +33,7 @@ jobs:
         if: matrix.target == 'debian'
         uses: actions/upload-artifact@v4.3.3
         with:
-          name: pbskids-dl_deb_${{ matrix.type }}.deb
+          name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.deb
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl_${{ matrix.type }}_deb.deb
           if-no-files-found: error
       - name: Output the SHA256SUM
@@ -72,7 +72,8 @@ jobs:
         run: |
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
-            sudo apt-get install ./pbskids-dl_deb_cli.deb -y
+            ls -al
+            sudo apt-get install ./pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
             cd ./.debian
             chmod +x *
