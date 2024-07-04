@@ -10,17 +10,10 @@ jobs:
       matrix:
         type: [cli, gui]
         target: [debian]
-        version: [11, 12]
       fail-fast: false
-    name: Build ${{ matrix.type }} for ${{ matrix.target }} using Debian ${{ matrix.version }}
+    name: Build ${{ matrix.type }} for ${{ matrix.target }}
     runs-on: ubuntu-latest
-    container: debian:${{ matrix.version }}
     steps:
-      - name: Update system
-        shell: bash
-        run: |
-          apt-get update
-          apt-get install git sudo -y
       - name: Init tools
         uses: actions/checkout@v4.1.7
         with:
@@ -49,6 +42,31 @@ jobs:
           name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.sha256sum
           path: /home/runner/work/pbskids-dl/pbskids-dl/pbskids-dl.sha256sum
           if-no-files-found: warn
+  test:
+    strategy:
+      matrix:
+        target: [debian]
+        version: [debian:11, debian:12, ubuntu:22.04]
+      fail-fast: false
+    needs: build
+    name: Test ${{ matrix.type }} for ${{ matrix.target }} using ${{ matrix.version }}
+    runs-on: ubuntu-latest
+    container: ${{ matrix.version }}
+    steps:
+      - name: Update system
+        shell: bash
+        run: |
+          apt-get update
+          apt-get install git sudo -y
+      - name: Init tools
+        uses: actions/checkout@v4.1.7
+      - uses: actions/setup-python@v5.1.0
+        with:
+          python-version: '3.11'
+      - name: Download the result (debian)
+        if: matrix.target == 'debian'
+        uses: actions/download-artifact@v4.1.7
+        # add sha256sum later
       - name: Test Build (debian)
         shell: bash
         run: |
