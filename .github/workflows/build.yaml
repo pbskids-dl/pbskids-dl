@@ -15,6 +15,10 @@ jobs:
     runs-on: ubuntu-latest
     container: debian:bookworm
     steps:
+      - name: Create Package
+        shell: bash
+        run: |
+          sudo apt install git
       - name: Init tools
         uses: actions/checkout@v4.1.7
         with:
