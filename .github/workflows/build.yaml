@@ -18,8 +18,8 @@ jobs:
       - name: Create Package
         shell: bash
         run: |
-          apt update
-          apt install git sudo
+          apt-get update
+          apt-get install git sudo -y
       - name: Init tools
         uses: actions/checkout@v4.1.7
         with:
@@ -54,7 +54,7 @@ jobs:
           if [ "$TYPE" = "cli" ]; then
             if [ "$TARGET" = "debian" ]; then
               cd $GITHUB_WORKSPACE
-              sudo apt install ./pbskids-dl_cli_deb.deb
+              sudo apt-get install ./pbskids-dl_cli_deb.deb -y
               pip install -r requirements.txt
               cd ./.debian
               chmod +x *
