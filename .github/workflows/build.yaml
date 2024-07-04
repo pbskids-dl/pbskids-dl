@@ -10,10 +10,11 @@ jobs:
       matrix:
         type: [cli, gui]
         target: [debian]
+        version: [11, 12]
       fail-fast: false
-    name: Build ${{ matrix.type }} for ${{ matrix.target }}
+    name: Build ${{ matrix.type }} for ${{ matrix.target }} using Debian ${{ matrix.version }}
     runs-on: ubuntu-latest
-    container: debian:bookworm
+    container: debian:${{ matrix.version }}
     steps:
       - name: Update system
         shell: bash
