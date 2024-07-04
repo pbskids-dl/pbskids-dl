@@ -65,7 +65,7 @@ jobs:
             sudo apt-get install ./pbskids-dl_debian_cli.deb/pbskids-dl_debian_cli.deb -y
             python3 -m pip install -r requirements.txt
             cd ./.debian
-            chmod +x *
+            sudo chmod +x ./filetest_debian.sh
             ./filetest_debian.sh ./pbskidsdl_testers.txt
           else
             exit 0
