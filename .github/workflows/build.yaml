@@ -55,7 +55,7 @@ jobs:
             if [ "$TARGET" = "debian" ]; then
               cd $GITHUB_WORKSPACE
               sudo apt-get install ./pbskids-dl_cli_deb.deb -y
-              pip install -r requirements.txt
+              python3 -m pip install -r requirements.txt
               cd ./.debian
               chmod +x *
               ./filetest.sh ./pbskidsdl_testers.txt
