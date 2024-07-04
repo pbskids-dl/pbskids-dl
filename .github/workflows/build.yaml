@@ -57,7 +57,7 @@ jobs:
         shell: bash
         run: |
           apt-get update
-          apt-get install git sudo -y
+          apt-get install git sudo zip unzip -y
       - name: Init tools
         uses: actions/checkout@v4.1.7
       - name: Download the result
@@ -68,6 +68,8 @@ jobs:
         run: |
           if [ "$TARGET" = "debian" ]; then
             cd $GITHUB_WORKSPACE
+            mv ./pbskids-dl_debian_cli.deb ./pbskids-dl_debian_cli.deb.zip
+            unzip ./pbskids-dl_debian_cli.deb
             ls -al
             sudo apt-get update
             sudo apt-get install ./pbskids-dl_debian_cli.deb -y
