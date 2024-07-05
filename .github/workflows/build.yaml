@@ -57,7 +57,12 @@ jobs:
           submodules: true # This line is only needed for building/testing a package, pretty much useless otherwise.
       - name: Download the result
         uses: actions/download-artifact@v4.1.7
-        # add sha256sum later
+      - name: Verify SHA256sum (debian)
+        if: matrix.target == 'debian'
+        shell: bash
+        run: |
+          cd $GITHUB_WORKSPACE
+          cat ./pbskids-dl_debian_cli.sha256sum | sha256sum --check
       - name: Test Build (debian)
         if: matrix.target == 'debian'
         shell: bash
