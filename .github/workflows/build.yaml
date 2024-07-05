@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        type: [cli, gui]
+        type: [cli, gui, all]
         target: [debian]
       fail-fast: false
     name: Build ${{ matrix.type }} for ${{ matrix.target }}
@@ -59,8 +59,8 @@ jobs:
         uses: actions/download-artifact@v4.1.7
         # add sha256sum later
       - name: Test Build (debian)
+        if: matrix.target == 'debian'
         shell: bash
-        if: ${{ matrix.target == 'debian' }}
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt-get update
