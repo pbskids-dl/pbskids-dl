@@ -56,7 +56,7 @@ jobs:
         with:
           submodules: true # This line is only needed for building/testing a package, pretty much useless otherwise.
       - name: Download the result
-        uses: actions/download-artifact@v4.1.7
+        uses: actions/download-artifact@v4.1.8
       - name: Verify SHA256sum (debian)
         if: matrix.target == 'debian'
         shell: bash
