@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        type: [cli, gui, all]
+        type: [cli, gui]
         target: [debian]
       fail-fast: false
     name: Build ${{ matrix.type }} for ${{ matrix.target }}
