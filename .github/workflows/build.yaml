@@ -8,10 +8,9 @@ jobs:
   build:
     strategy:
       matrix:
-        type: [cli, gui]
-        target: [debian]
+        target: [debian] # Maybe add other package managers?
       fail-fast: false
-    name: Build ${{ matrix.type }} for ${{ matrix.target }}
+    name: Build for ${{ matrix.target }}
     runs-on: ubuntu-latest
     steps:
       - name: Init tools
@@ -25,22 +24,21 @@ jobs:
         shell: bash
         run: |
           chmod +x *
-          ./.$TARGET/setup$TYPE.sh
+          ./.$TARGET/setup.sh
         env:
-          TYPE: ${{ matrix.type }}
           TARGET: ${{ matrix.target }}
       - name: Output the result (debian)
         if: matrix.target == 'debian'
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.deb
-          path: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.deb
+          name: pbskids-dl_${{ matrix.target }}.deb
+          path: pbskids-dl_${{ matrix.target }}.deb
           if-no-files-found: error
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: pbskids-dl_${{ matrix.target }}_${{ matrix.type }}.sha256sum
-          path: pbskids-dl.sha256sum
+          name: pbskids-dl_${{ matrix.target }}.sha256sum
+          path: pbskids-dl_${{ matrix.target }}.sha256sum
           if-no-files-found: warn
   test:
     strategy:
@@ -62,17 +60,17 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          mv ./pbskids-dl_debian_cli.sha256sum.2
-          cp ./pbskids-dl_debian_cli.sha256sum.2/pbskids-dl.sha256sum ./pbskids-dl_debian_cli.sha256sum
-          cat ./pbskids-dl_debian_cli.sha256sum | sha256sum --check
+          mv ./pbskids-dl_debian.sha256sum.2
+          cp ./pbskids-dl_debian.sha256sum.2/pbskids-dl_debian.sha256sum ./pbskids-dl_debian.sha256sum
+          cat ./pbskids-dl_debian.sha256sum | sha256sum --check
       - name: Test Build (debian)
         if: matrix.target == 'debian'
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
           sudo apt-get update
-          sudo apt-get install ./pbskids-dl_debian_cli.deb/pbskids-dl_debian_cli.deb -y
+          sudo apt-get install ./pbskids-dl_debian.deb/pbskids-dl_debian.deb -y
           python3 -m pip install -r requirements.txt
           cd ./.debian
-          sudo chmod +x ./filetest_debian.sh
-          ./filetest_debian.sh ./pbskidsdl_testers.txt
+          sudo chmod +x ./filetest.sh
+          ./filetest.sh ./pbskidsdl_testers.txt
