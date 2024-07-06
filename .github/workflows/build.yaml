@@ -62,7 +62,9 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          cat ./pbskids-dl_debian_cli.sha256sum/pbskids-dl.sha256sum | sha256sum --check
+          mv ./pbskids-dl_debian_cli.sha256sum.2
+          cp ./pbskids-dl_debian_cli.sha256sum.2/pbskids-dl.sha256sum ./pbskids-dl_debian_cli.sha256sum
+          cat ./pbskids-dl_debian_cli.sha256sum | sha256sum --check
       - name: Test Build (debian)
         if: matrix.target == 'debian'
         shell: bash
