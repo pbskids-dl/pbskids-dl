@@ -7,7 +7,7 @@ permissions:
   pull-requests: write
 
 jobs:
-  dependabot:
+  dependabot_automerge:
     runs-on: ubuntu-latest
     if: github.actor == 'dependabot[bot]'
     steps:
@@ -16,16 +16,8 @@ jobs:
         uses: dependabot/fetch-metadata@v2
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
-      - name: Checkout
-        uses: actions/checkout@v4.1.7
-      - name: Check GitHub actions for PR
-        shell: bash
-        run: $GITHUB_WORKSPACE/.prcheck.sh "$PR_URL"
-        env:
-          PR_URL: ${{github.event.pull_request.html_url}}
-          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
       - name: Auto-merge Dependabot PR
-        run: gh pr merge --auto --merge "$PR_URL"
+        run: gh pr comment "$PR_URL" --body "@dependabot merge"
         env:
           PR_URL: ${{github.event.pull_request.html_url}}
           GH_TOKEN: ${{secrets.GITHUB_TOKEN}}
