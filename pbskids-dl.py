@@ -48,6 +48,7 @@ def handle_progress(chunk_number, chunk_size, total_size):
 def cli_builder():
     parser = argparse.ArgumentParser(prog='pbskids-dl', description='A tool for downloading PBS KIDS videos.', epilog='Made by NexusSfan')
     parser.add_argument('url', help='The page you land on when a video is playing.')
+    parser.add_argument('file', help='The file to store the video (optional).')
     parser.add_argument('-v', '--version', action='version', version='pbskids-dl '+pbskids_dl_version)
     parser.add_argument('-q', '--quiet', action='store_true')
     args = parser.parse_args()
@@ -80,12 +81,14 @@ def check_drm():
     if str(isdrm) != "None":
         errorquit("DRM Content is not available in pbskids-dl... yet.", "1", "4")
 
-def download_video(vid_title, video, isquiet):
+def download_video(vid_title, video, isquiet, filename):
     try:
         global realvid
         realvid = video['url']
         print('Downloading Video...')
         print(realvid)
+        if filename != '':
+            vid_title = filename
         if isquiet:
             urllib.request.urlretrieve(realvid, vid_title)
         else:
@@ -102,7 +105,7 @@ def main():
     print(vid_title)
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
-            download_video(vid_title, video, args.quiet)
+            download_video(vid_title, video, args.quiet, args.file)
             break
     print("\nThe operation completed.")
 
