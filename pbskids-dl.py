@@ -49,7 +49,7 @@ def handle_progress(chunk_number, chunk_size, total_size):
 def cli_builder():
     parser = argparse.ArgumentParser(prog='pbskids-dl', description='A tool for downloading PBS KIDS videos.', epilog='Made by NexusSfan')
     parser.add_argument('url', help='The page you land on when a video is playing.')
-    parser.add_argument('file', help='The file to store the video (optional).', required=False)
+    parser.add_argument('-f', '--filename', help='The file to store the video (optional).')
     parser.add_argument('-v', '--version', action='version', version='pbskids-dl '+pbskids_dl_version)
     parser.add_argument('-q', '--quiet', action='store_true')
     args = parser.parse_args()
@@ -106,7 +106,7 @@ def main():
     print(vid_title)
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
-            download_video(vid_title, video, args.quiet, args.file)
+            download_video(vid_title, video, args.quiet, args.filename)
             break
     print("\nThe operation completed.")
 
