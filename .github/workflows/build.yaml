@@ -38,7 +38,7 @@ jobs:
         uses: actions/upload-artifact@v4.3.4
         with:
           name: pbskids-dl_${{ matrix.target }}.sha256sum
-          path: pbskids-dl_${{ matrix.target }}.sha256sum
+          path: pbskids-dl.sha256sum
           if-no-files-found: warn
   test:
     strategy:
