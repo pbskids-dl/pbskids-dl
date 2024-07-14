@@ -60,7 +60,7 @@ jobs:
         shell: bash
         run: |
           cd $GITHUB_WORKSPACE
-          mv ./pbskids-dl_debian.sha256sum.2
+          mv ./pbskids-dl_debian.sha256sum ./pbskids-dl_debian.sha256sum.2
           cp ./pbskids-dl_debian.sha256sum.2/pbskids-dl_debian.sha256sum ./pbskids-dl_debian.sha256sum
           cat ./pbskids-dl_debian.sha256sum | sha256sum --check
       - name: Test Build (debian)
