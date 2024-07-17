@@ -99,6 +99,8 @@ def download_video(vid_title, video, isquiet, filename):
 
 def main():
     args = cli_builder()
+    print(args)
+    type(args)
     script = fetch_script(args.url)
     check_drm()
     assets, videos = find_assets(script)
