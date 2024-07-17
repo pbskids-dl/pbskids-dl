@@ -65,7 +65,7 @@ jobs:
           mv ./pbskids-dl_debian.deb ./pbskids-dl_debian.deb.2
           cp ./pbskids-dl_debian.deb.2/pbskids-dl_debian.deb ./pbskids-dl_debian.deb
           cat ./pbskids-dl_debian.sha256sum | sha256sum --check
-      - name: Test Build (debian)
+      - name: Install Packages (debian)
         if: matrix.target == 'debian'
         shell: bash
         run: |
@@ -73,6 +73,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install ./pbskids-dl_debian.deb -y
           python3 -m pip install -r requirements.txt
+      - name: Test Build (debian)
+        if: matrix.target == 'debian'
+        shell: bash
+        run: |
           cd ./.debian
           sudo chmod +x ./filetest.sh
           ./filetest.sh ./pbskidsdl_testers.txt
