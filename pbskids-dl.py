@@ -103,7 +103,10 @@ def main():
     check_drm()
     assets, videos = find_assets(script)
     vid_title = assets['title'].replace('/','+').replace('\\','+') + '.mp4'
-    print(vid_title)
+    if args.filename:
+        print(args.filename)
+    else:
+        print(vid_title)
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
             download_video(vid_title, video, args.quiet, args.filename)
