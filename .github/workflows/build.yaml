@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        target: [debian] # Maybe add other package managers?
+        target: [debian] # I am learning how to create pip packages at the moment.
       fail-fast: false
     name: Build for ${{ matrix.target }}
     runs-on: ubuntu-latest
@@ -31,8 +31,8 @@ jobs:
         if: matrix.target == 'debian'
         uses: actions/upload-artifact@v4.3.4
         with:
-          name: pbskids-dl_${{ matrix.target }}.deb
-          path: pbskids-dl_${{ matrix.target }}.deb
+          name: pbskids-dl_debian.deb
+          path: pbskids-dl_debian.deb
           if-no-files-found: error
       - name: Output the SHA256SUM
         uses: actions/upload-artifact@v4.3.4
