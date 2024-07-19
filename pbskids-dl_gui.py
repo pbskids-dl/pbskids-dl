@@ -16,7 +16,7 @@
 #    with this program; if not, write to the Free Software Foundation, Inc.,
 #    51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
-pbskids_dl_version = '3.1'
+pbskids_dl_version = '3.2'
 import sys
 
 try:
