@@ -31,7 +31,6 @@ except:
     sys.exit(128)
 
 def errorquit(exitmessage, exitcode, errorcode):
-    # Show error part 1
     pbskidsdl_errorone = "ERROR: " + str(exitmessage)
     pbskidsdl_errortwo = "Error code: " + str(errorcode)
     pbskidsdl_errorthree = "Possible causes: Bad internet or script killed"
@@ -67,7 +66,6 @@ def find_assets(script):
         videos = assets['videos']
     except:
         message='ERROR: The video was not found! Is the link a PBS Kids Video link?'
-        tkinter.messagebox.showwarning(title='Warning!',message=message)
         errorquit(message, "1", "2")
     return assets,videos
 
@@ -91,7 +89,6 @@ def download_video(*args):
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
             realvid = video['url']
-            # realvid='https://www.python.org/ftp/python/3.10.6/python-3.10.6-amd64.exe'
             progressbar = ttk.Progressbar(mainframe)
             progressbar.grid(column=1,row=2, sticky=(tkinter.W, tkinter.E))
             download_button['state']= tkinter.DISABLED
