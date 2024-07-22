@@ -110,8 +110,9 @@ def main():
     for video in videos:
         if (video['profile'] == 'mp4-16x9-baseline'):
             download_video(vid_title, video, args.quiet, args.filename)
-            break
-    print("\nThe operation completed.")
+            print("\nThe download succeded.")
+            return
+    print("\nDownload failed.")
 
 if __name__ == "__main__":
     main()
