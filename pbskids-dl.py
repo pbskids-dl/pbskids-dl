@@ -113,6 +113,7 @@ def main():
             print("\nThe download succeded.")
             return
     print("\nDownload failed.")
+    sys.exit(1)
 
 if __name__ == "__main__":
     main()
