@@ -2,4 +2,3 @@ argparse
 urllib3
 beautifulsoup4
 lxml
-tk
