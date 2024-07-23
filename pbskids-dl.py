@@ -80,7 +80,7 @@ def check_drm():
     global soup
     isdrm = soup.find('\"drm_enabled\"\:true')
     if str(isdrm) != "None":
-        errorquit("DRM Content is not available in pbskids-dl... yet.", "1", "4")
+        errorquit("DRM Content is not available in pbskids-dl...", "1", "4")
 
 def download_video(vid_title, video, isquiet, filename):
     try:
