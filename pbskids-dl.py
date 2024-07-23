@@ -63,7 +63,7 @@ def fetch_script(url):
         soup = BeautifulSoup(webContent, features="lxml")
         script = soup.find('script', type='application/json').text
     except:
-        nofoundurl = str('The \"' + url + '\" link failed to load properly. Is it a PBS Kids Video link?')
+        nofoundurl = str('The \"' + url + '\" link failed to load properly. Is it a PBS KIDS Video link?')
         errorquit(nofoundurl, "128", "1")
     return script
 
@@ -73,7 +73,7 @@ def find_assets(script):
         assets = data['props']['pageProps']['videoData']['mediaManagerAsset']
         videos = assets['videos']
     except:
-        errorquit("ERROR: The video was not found! Is the link a PBS Kids Video link?", "128", "2")
+        errorquit("ERROR: The video was not found! Is the link a PBS KIDS Video link?", "128", "2")
     return assets,videos
 
 def check_drm():
