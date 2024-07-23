@@ -18,7 +18,7 @@
 
 
 import sys
-const pbskids_dl_version = '3.2'
+pbskids_dl_version = '3.2'
 
 def errorquit(exitmessage, exitcode, errorcode):
     print("ERROR: " + str(exitmessage), file=sys.stderr)
