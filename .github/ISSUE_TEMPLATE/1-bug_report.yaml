@@ -29,8 +29,9 @@ body:
       label: Version
       description: What version of our software are you running?
       options:
-        - 3.0 (Oldstable)
-        - 3.1 (Stable)
+        - 3.0 (Oldoldstable)
+        - 3.1 (Oldstable)
+        - 3.2 (Stable)
         - Dev (Unstable)
       default: 0
     validations:
