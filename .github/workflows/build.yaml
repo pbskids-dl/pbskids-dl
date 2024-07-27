@@ -12,6 +12,8 @@ jobs:
       fail-fast: false
     name: Build for ${{ matrix.target }}
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - name: Init tools
         uses: actions/checkout@v4.1.7
