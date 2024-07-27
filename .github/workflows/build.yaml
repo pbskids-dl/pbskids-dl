@@ -47,10 +47,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: nightly
-          name: 'Nightly Release $$'
+          tag_name: unstable
+          name: 'Unstable'
           prerelease: true
-          body: 'TODO: Add nightly release notes'
+          body: 'Unstable release of pbskids-dl for commit ${{ github.sha }}'
           files: |
             ./pbskids-dl_debian.deb
   test:
