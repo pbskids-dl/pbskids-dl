@@ -40,6 +40,17 @@ jobs:
           name: pbskids-dl_${{ matrix.target }}.sha256sum
           path: pbskids-dl.sha256sum
           if-no-files-found: warn
+      - name: Update Nightly Release
+        uses: andelf/nightly-release@46e2d5f80828ecc5c2c3c819eb31186a7cf2156c
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: nightly
+          name: 'Nightly Release $$'
+          prerelease: true
+          body: 'TODO: Add nightly release notes'
+          files: |
+            ./pbskids-dl_debian.deb
   test:
     strategy:
       matrix:
