@@ -8,7 +8,7 @@ jobs:
   build:
     strategy:
       matrix:
-        target: [debian] # I am learning how to create pip packages at the moment.
+        target: [debian]
       fail-fast: false
     name: Build for ${{ matrix.target }}
     runs-on: ubuntu-latest
