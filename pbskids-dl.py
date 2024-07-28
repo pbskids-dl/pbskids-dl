@@ -78,7 +78,7 @@ def find_assets(script):
 
 def check_drm():
     global soup
-    isdrm = soup.find('\"drm_enabled\"\:true')
+    isdrm = soup.find('\"drm_enabled\":true')
     if str(isdrm) != "None":
         errorquit("DRM Content is not available in pbskids-dl...", "1", "4")
 
