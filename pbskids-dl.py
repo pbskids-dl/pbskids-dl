@@ -108,7 +108,7 @@ def main():
     else:
         print(vid_title)
     for video in videos:
-        if (video['profile'] == 'mp4-16x9-baseline'):
+        if (video['profile'] == 'mp4-16x9-720p'):
             download_video(vid_title, video, args.quiet, args.filename)
             print("\nThe download succeded.")
             return
