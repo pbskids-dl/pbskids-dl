@@ -55,7 +55,7 @@ def fetch_script(link: str):
     return script
 
 def check_drm(soup):
-    isdrm = soup.find('\"drm_enabled\"\:true')
+    isdrm = soup.find('\"drm_enabled\":true')
     if str(isdrm) != "None":
         errorquit("DRM Content is not available in pbskids-dl", "1", "4")
 
