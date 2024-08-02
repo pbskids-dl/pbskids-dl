@@ -31,13 +31,13 @@ jobs:
           TARGET: ${{ matrix.target }}
       - name: Output the result (debian)
         if: matrix.target == 'debian'
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4.3.5
         with:
           name: pbskids-dl_debian.deb
           path: pbskids-dl_debian.deb
           if-no-files-found: error
       - name: Output the SHA256SUM
-        uses: actions/upload-artifact@v4.3.4
+        uses: actions/upload-artifact@v4.3.5
         with:
           name: pbskids-dl_${{ matrix.target }}.sha256sum
           path: pbskids-dl.sha256sum
