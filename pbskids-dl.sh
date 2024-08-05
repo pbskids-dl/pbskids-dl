@@ -38,7 +38,7 @@ fi
 
 rawurl=($1)
 if [ "$1" == "--help" ]; then
-    echo "pbskids-dl v2.3"
+    echo "pbskids-dl v3.0"
     echo "Sadly, pbskids-dl.sh is EOF. For more info, visit https://github.com/pbskids-dl/pbskids-dl/wiki/pbskids-dl.sh-EOF"
     echo "A tool for downloading PBS KIDS videos"
     echo "Usage: pbskids-dl [url]"
